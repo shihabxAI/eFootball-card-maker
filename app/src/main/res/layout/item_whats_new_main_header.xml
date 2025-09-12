@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:id="@+id/main_header_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/efootball_bold"
+        android:text="🌟 আমাদের অ্যাপের আকর্ষণীয় ফিচারসমূহ 🌟"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/main_header_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="আপনার স্বপ্নের প্লেয়ার কার্ড তৈরি করুন আগের চেয়েও সহজে!"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="15sp"
+        android:lineSpacingExtra="5dp"/>
+</LinearLayout>
