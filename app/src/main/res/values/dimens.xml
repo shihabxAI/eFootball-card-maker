@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toolbar_text_size">26dp</dimen>
+
+
+    <dimen name="card_frame_width">250dp</dimen>
+    <dimen name="corner">12dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+    <dimen name="padding_small">4dp</dimen>
+    <dimen name="font_size_preview_rating">32sp</dimen>
+    <dimen name="font_size_preview_position_name">30sp</dimen>
+    <dimen name="font_size_preview_rating_name">56sp</dimen>
+    <dimen name="preview_rating_translate_y">10dp</dimen>
+    <dimen name="preview_position_translate_y">0dp</dimen>
+    <dimen name="preview_flag_translate_y">-10dp</dimen>
+    <dimen name="flag_image_size">30dp</dimen>
+    <dimen name="preview_name_margin_bottom">85dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="font_size_medium">14sp</dimen>
+    <dimen name="input_field_height">48dp</dimen>
+    <dimen name="min_btn_height">56dp</dimen>
+    <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="padding_medium">12dp</dimen>
+    <dimen name="font_size_large">16sp</dimen>
+    <dimen name="upload_button_height">80dp</dimen>
+
+    <dimen name="padding_large">16dp</dimen>
+    <dimen name="font_size_xlarge">20sp</dimen>
+    <dimen name="action_button_height">52dp</dimen>
+    <dimen name="margin_xlarge">24dp</dimen>
+
+    <dimen name="font_size_list_title">18sp</dimen>
+
+    <dimen name="font_size_min_autosize">10sp</dimen>
+    <dimen name="font_size_small_autosize">8sp</dimen>
+    <dimen name="font_size_step_granularity">1sp</dimen>
+    <dimen name="card_editor_eraser_btn_min_width">140dp</dimen>
+    <dimen name="card_editor_button_corner_radius">8dp</dimen>
+
+    <dimen name="epic_position_margin_top_negative">-18dp</dimen>
+    <dimen name="epic_flag_padding">1dp</dimen>
+
+    <dimen name="bottom_sheet_grabber_width">40dp</dimen>
+    <dimen name="font_size_xxlarge">22sp</dimen>
+
+    <dimen name="home_fragment_title_text_size">22sp</dimen>
+    <dimen name="home_fragment_card_margin_top">32dp</dimen>
+
+    <dimen name="font_size_large_alt">15sp</dimen>
+
+    <dimen name="button_corner_radius_small">6dp</dimen>
+    <dimen name="home_card_height">120dp</dimen>
+
+    </resources>

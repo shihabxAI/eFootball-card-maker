@@ -1,0 +1,88 @@
+<resources>
+
+    <style name="MyCustomInputBoxStyle">
+        <item name="android:background">@drawable/edittext_bg</item>
+        <item name="android:paddingStart">@dimen/padding_medium</item>
+        <item name="android:paddingEnd">@dimen/padding_medium</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">@font/efootball_regular</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:minHeight">@dimen/input_field_height</item>
+        <item name="android:paddingHorizontal">@dimen/padding_medium</item>
+    </style>
+
+
+    <style
+            name="Toolbar.TitleText"
+            parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="fontFamily">@font/efootball_bold</item>
+    </style>
+
+
+    <style name="BaseLabelStyle">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:fontFamily">@font/efootball_regular</item>
+        <item name="android:textSize">@dimen/font_size_medium</item>
+    </style>
+
+    <style
+        name="ToolbarTitleText"
+        parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="fontFamily">@font/efootball_stencil_regular</item>
+    </style>
+
+    <style
+        name="MyCustomButtonStyle"
+        parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/button_background_tint_light</item>
+        <item name="cornerRadius">@dimen/button_corner_radius_small</item>
+        <item name="android:textColor">?attr/customButtonTextColor</item>
+        <item name="rippleColor">@color/button_ripple_light_grey</item>
+    </style>
+
+    <style
+        name="BaseCardStyle"
+        parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/home_card_height</item>
+        <item name="cardCornerRadius">@dimen/preview_rating_translate_y</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style
+        name="LeftCardStyle"
+        parent="BaseCardStyle">
+        <item name="android:layout_marginStart">@dimen/margin_large</item>
+        <item name="android:layout_marginEnd">@dimen/margin_small</item>
+    </style>
+
+    <style
+        name="RightCardStyle"
+        parent="BaseCardStyle">
+        <item name="android:layout_marginStart">@dimen/margin_small</item>
+        <item name="android:layout_marginEnd">@dimen/margin_large</item>
+    </style>
+
+    <style
+        name="Theme.EFootballCardMaker.CardPreview"
+        parent="Theme.Material3.Light.NoActionBar">
+
+        <item name="colorSurface">@color/literal_white</item>
+        <item name="colorOnSurface">@color/literal_white</item>
+
+        <item name="customButtonTextColor">#FF000000</item>
+    </style>
+
+
+    <style
+        name="Widget.App.BottomNavigationView"
+        parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">?attr/colorSurface</item>
+    </style>
+
+
+</resources>

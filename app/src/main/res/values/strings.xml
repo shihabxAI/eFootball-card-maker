@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">eFootball Card Maker</string>
+    <string name="home_title">Choose your card</string>
+
+    <string name="epic_image">Epic</string>
+    <string name="potw_image">Potw</string>
+    <string name="new_epic_image">New Epic</string>
+    <string name="previewRating">101</string>
+    <string name="previewPosition">AMF</string>
+
+
+
+    <string name="preview_default_player_name">PLAYER NAME</string>
+
+    <string name="label_upload_image">Upload Player Image</string>
+    <string name="add_image">Add Player Image</string>
+    <string name="btn_add_front_image">Front Image</string>
+    <string name="label_image_size">Image Size</string>
+
+    <string name="toolbar_title_editor">Epic Card Editor</string>
+    <string name="toolbar_home">eFootball card maker</string>
+
+    <string name="player_details_title">Player Details</string>
+    <string name="label_player_name">Player Name</string>
+    <string name="hint_player_name">Enter player name</string>
+    <string name="label_rating">Rating</string>
+    <string name="hint_player_rating">101</string>
+    <string name="label_position">Position</string>
+    <string name="label_add_logo">Add country</string>
+    <string name="label_upload_logo">Add club logo</string>
+    <string name="btn_add_manually">Club logo</string>
+
+    <string name="btn_share">Share</string>
+    <string name="btn_download">Save card</string>
+    <string name="btn_reset_card">Reset</string>
+    <string name="cd_navigate_up">Navigate Up</string>
+
+    <string name="searchCountry">Search Country...</string>
+
+
+    <string name="btn_add_player_image">Add Player Image</string>
+    <string name="flag_image_desc">Flag image</string>
+    <string name="player_image_description">Player Image Preview</string>
+
+
+    <string name="player_image_1_description">Player Image L</string>
+    <string name="player_image_2_description">Player Image S</string>
+    <string name="secondary_player_image_description">Secondary player image</string>
+
+    <string name="btn_add_image_1">Add big image</string>
+    <string name="btn_add_image_2">Add small image</string>
+    <string name="btn_potw_image">Add image</string>
+
+
+    <string name="menu_home">Home</string>
+    <string name="menu_setting">Setting</string>
+
+
+    <string name="hint_select_position">Select Position</string>
+    <string name="hint_select_country">Select Country</string>
+    <string name="card_saved_success">Card saved to Downloads/eFCardify</string>
+    <string name="card_saved_failed">Failed to save card</string>
+    <string name="share_card_title">Share Card Via</string>
+
+    <string name="failed_to_share">Failed to create sharable image</string>
+    <string name="select_position">Select Position</string>
+
+
+    <string name="settings_title">Setting</string>
+    <string name="settings_subtitle">Control your app settings</string>
+
+  <string name="dark_mode">Dark Mode 🌙</string>
+    <string name="dark_mode_summary">Switch between the light and dark side!</string>
+
+    <string name="notification">Notifications 🔔</string>
+    <string name="notification_summary">Stay updated with the latest drops and news!</string>
+
+    <string name="contact_with_me">Contact Us 📞</string>
+    <string name="contact_summary">Connect with the dev team for support or feedback!</string>
+
+    <string name="whats_new">Patch Notes 📝</string>
+    <string name="whats_new_summary">Check out the new features in this version!</string>
+
+    <string name="version">Build Version</string>
+    <string name="version_number">1.0.0</string>
+
+
+    <string-array name="player_positions">
+        <item>CF</item>
+        <item>SS</item>
+        <item>LWF</item>
+        <item>RWF</item>
+        <item>AMF</item>
+        <item>CMF</item>
+        <item>DMF</item>
+        <item>LMF</item>
+        <item>RMF</item>
+        <item>LB</item>
+        <item>RB</item>
+        <item>CB</item>
+        <item>GK</item>
+    </string-array>
+
+    <string name="card_editor_select_country">Select Country</string>
+    <string name="card_editor_btn_eraser">Eraser</string>
+    <string name="card_editor_cd_undo">Undo</string>
+    <string name="card_editor_cd_redo">Redo</string>
+    <string name="card_editor_label_eraser_size">Eraser Size</string>
+    <string name="card_editor_label_hardness">Hardness</string>
+    <string name="card_editor_label_image_size">Image Size</string>
+
+    <string name="whats_new_title">What\'s New</string>
+
+    <string name="item_country_placeholder_name">Country Name</string>
+
+    <string name="bullet_point" translatable="false">•</string>
+    <string name="item_whats_new_placeholder_description">New amazing feature has been added.</string>
+
+    <string name="whats_new_header_title">🌟 আমাদের অ্যাপের আকর্ষণীয় ফিচারসমূহ 🌟</string>
+    <string name="whats_new_header_subtitle">আপনার স্বপ্নের প্লেয়ার কার্ড তৈরি করুন আগের চেয়েও সহজে!</string>
+
+
+   <string name="resources_title">Resource</string>
+    <string name="player_render_title">Player Renders</string>
+    <string name="player_render_subtitle">Visit for high-quality player PNGs!</string>
+    <string name="bg_remover_title">Background Remover</string>
+    <string name="bg_remover_subtitle">Visit to instantly remove photo backgrounds!</string>
+
+<string name="back_button_desc">Back</string>
+
+    </resources>

@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style
+            name="Base.Theme.EFootballCardMaker"
+            parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/my_toolbar_color</item>
+        <item name="colorOnPrimary">@color/toolbar_text</item>
+        <item name="colorSurface">@color/app_background_color</item>
+        <item name="colorOnSurface">@color/black</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item
+                name="android:windowLightStatusBar"
+                tools:targetApi="m">true</item>
+
+        <item name="android:windowBackground">?attr/colorSurface</item>
+
+        <item name="customButtonTextColor">@color/button_text_dark</item>
+        <item name="customDividerColor">@color/divider_light_grey</item>
+
+    </style>
+
+    <style
+            name="Theme.EFootballCardMaker"
+            parent="Base.Theme.EFootballCardMaker" />
+</resources>
