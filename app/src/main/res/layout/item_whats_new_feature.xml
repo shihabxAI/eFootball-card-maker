@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/margin_xlarge"
+    android:paddingVertical="@dimen/margin_small">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bullet_point"
+        android:textSize="@dimen/font_size_large"
+        android:layout_marginEnd="@dimen/padding_medium"
+        android:textColor="?attr/colorOnSurfaceVariant"/>
+
+    <TextView
+        android:id="@+id/feature_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/item_whats_new_placeholder_description"
+        tools:text="New amazing feature has been added."
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="@dimen/font_size_large_alt"
+        android:lineSpacingExtra="@dimen/margin_5dp"/>
+</LinearLayout>

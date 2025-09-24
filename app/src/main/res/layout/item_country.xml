@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/padding_medium"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/flag_image_view"
+        android:layout_width="@dimen/bottom_sheet_grabber_width"
+        android:layout_height="@dimen/flag_image_size"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/country_name_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="@dimen/margin_large"
+        tools:text="Country Name"
+        android:text="@string/item_country_placeholder_name"
+        android:textSize="@dimen/font_size_large"/>
+</LinearLayout>

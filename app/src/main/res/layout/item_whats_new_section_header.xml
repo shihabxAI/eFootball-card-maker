@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/margin_xlarge"
+    android:paddingTop="@dimen/font_size_xlarge"
+    android:paddingBottom="@dimen/preview_rating_translate_y">
+
+    <ImageView
+        android:id="@+id/section_icon"
+        android:layout_width="@dimen/font_size_xlarge"
+        android:layout_height="@dimen/font_size_xlarge"
+        android:src="@drawable/ic_home"
+        app:tint="?attr/colorOnSurface"
+        android:layout_marginEnd="@dimen/padding_medium"/>
+
+    <TextView
+        android:id="@+id/section_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/efootball_bold"
+        tools:text="কার্ড তৈরি ও ডিজাইন"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="@dimen/font_size_large" />
+</LinearLayout>
