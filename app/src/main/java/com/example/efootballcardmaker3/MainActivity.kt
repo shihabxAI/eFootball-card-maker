@@ -1,61 +1,41 @@
+// MainActivity.kt
 package com.example.efootballcardmaker3
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.efootballcardmaker3.databinding.ActivityMainBinding
 
-class MainActivity : BaseActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Toolbar সেটআপ করা হলো
-        setupToolbar(
-            toolbarId = R.id.home_toolbar,
-            title = "", 
-            showBackButton = false
-        )
-        
-        if (savedInstanceState == null) {
-            loadFragment(HomeFragment())
-        }
-        
-        setupBottomNavigation()
-    }
+        // Toolbar-কে অ্যাপের ActionBar হিসেবে সেট করুন
+        setSupportActionBar(binding.homeToolbar.toolbar)
+        // ১. ডিফল্ট টাইটেল দেখানো বন্ধ করুন
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
-    private fun setupBottomNavigation() {
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_home -> {
-                    loadFragment(HomeFragment())
-                    true
-                }
-                
-                R.id.navigation_settings -> {
-                    loadFragment(SettingsFragment()) 
-                    true
-                }
-                
-                else -> false
-            }
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+
+        binding.bottomNavigation.setupWithNavController(navController)
+
+        // ২. Fragment পরিবর্তনের সাথে সাথে কাস্টম TextView-এর লেখা আপডেট করুন
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.homeToolbar.toolbarTitle.text = destination.label
         }
     }
-    
-    private fun loadFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .commit()
-    }
 
-    // --- এই ফাংশনটি সম্পূর্ণ নতুন করে লেখা হয়েছে ---
-    fun setToolbarTitle(title: String) {
-        // View Binding এর মাধ্যমে সরাসরি TextView কে অ্যাক্সেস করা হচ্ছে
-        // এখানে কোনো findViewById নেই
-        binding.homeToolbar.toolbarTitle.text = title
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

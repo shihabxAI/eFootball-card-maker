@@ -1,3 +1,4 @@
+// ফাইল: EraseableImageView.kt (শুধুমাত্র ব্লারের মান বাড়ানো হয়েছে)
 package com.example.efootballcardmaker3
 
 import android.content.Context
@@ -15,10 +16,8 @@ class EraseableImageView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : AppCompatImageView(context, attrs, defStyleAttr) {
 
-    // **NEW**: Public property to control erasing from the Activity
     var isEraserEnabled = false
 
-    // ... (listener and other properties remain the same)
     interface OnDrawHistoryChangedListener {
         fun onHistoryChanged(canUndo: Boolean, canRedo: Boolean)
     }
@@ -67,76 +66,37 @@ class EraseableImageView @JvmOverloads constructor(
         }
         updatePaint()
     }
-    
-    // All other functions (updatePaint, loadImage, undo, redo, clearHistory, redrawAllPaths, getTouchPointOnBitmap, notifyHistoryChanged) remain unchanged.
-    // ...
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        // **FIX**: Check if the eraser is enabled before processing any touch event.
-        if (!isEraserEnabled || drawingBitmap == null) {
-            return false // Return false to indicate the event was not handled.
-        }
-
-        val mapped = getTouchPointOnBitmap(event.x, event.y) ?: return false
-        val x = mapped.x
-        val y = mapped.y
-
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                currentPath = Path().apply {
-                    moveTo(x, y)
-                }
-                mX = x
-                mY = y
-            }
-            MotionEvent.ACTION_MOVE -> {
-                val dx = Math.abs(x - mX)
-                val dy = Math.abs(y - mY)
-                if (dx >= touchTolerance || dy >= touchTolerance) {
-                    currentPath?.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2)
-                    mX = x
-                    mY = y
-                    currentPath?.let { drawingCanvas?.drawPath(it, erasePaint) }
-                }
-            }
-            MotionEvent.ACTION_UP -> {
-                currentPath?.let {
-                    undoStack.addLast(Path(it))
-                    redoStack.clear()
-                    notifyHistoryChanged()
-                }
-                currentPath = null
-            }
-        }
-
-        invalidate()
-        // Return true to consume the touch event so it doesn't propagate further.
-        return true
-    }
-    
-    // --- The rest of the functions are unchanged. I've included them for completeness. ---
-    
+    // ================================================================
+    // ============== ব্লারের মান শুধু এই ফাংশনে বাড়ানো হয়েছে ==============
+    // ================================================================
     private fun updatePaint() {
-    erasePaint.strokeWidth = eraserSize
+        erasePaint.strokeWidth = eraserSize
 
-    if (eraserHardness >= 1.0f) {
-        // Hardness 1 হলে sharp
-        erasePaint.maskFilter = null
-    } else {
-        // Hardness 0 → বেশি blur, Hardness 1 → কম blur
-        val baseBlur = 50f                // ছোট ব্রাশ হলেও blur থাকবে
-        val sizeFactor = eraserSize * 0.5f // সাইজ বাড়লে blurও কিছুটা বাড়বে
-        val maxBlur = baseBlur + sizeFactor
-
-        val blurRadius = maxBlur * (1.0f - eraserHardness)
-
-        erasePaint.maskFilter = if (blurRadius > 0) {
-            BlurMaskFilter(blurRadius, BlurMaskFilter.Blur.NORMAL)
+        if (eraserHardness >= 1.0f) {
+            erasePaint.maskFilter = null
         } else {
-            null
+            // 👇 এখানে ব্লারের মানগুলো বাড়ানো হয়েছে
+            
+            // বেস ব্লার ভ্যালু 25f থেকে 40f করা হয়েছে
+            val baseBlur = 40f
+            
+            // সাইজ ফ্যাক্টর 0.5f থেকে 0.75f করা হয়েছে, যাতে বড় ব্রাশে আরও বেশি ব্লার হয়
+            val sizeFactor = eraserSize * 0.75f 
+            
+            val maxBlur = baseBlur + sizeFactor
+            val blurRadius = maxBlur * (1.0f - eraserHardness)
+
+            erasePaint.maskFilter = if (blurRadius > 0) {
+                BlurMaskFilter(blurRadius, BlurMaskFilter.Blur.NORMAL)
+            } else {
+                null
+            }
         }
     }
-}
+
+    // ... (নিচের বাকি সব কোড অপরিবর্তিত)
+
     fun loadImage(uri: Uri, onImageLoaded: () -> Unit) {
         Glide.with(context)
             .asBitmap()
@@ -200,6 +160,47 @@ class EraseableImageView @JvmOverloads constructor(
             setImageBitmap(drawingBitmap)
             invalidate()
         }
+    }
+    
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        if (!isEraserEnabled || drawingBitmap == null) {
+            return super.onTouchEvent(event)
+        }
+
+        val mapped = getTouchPointOnBitmap(event.x, event.y) ?: return false
+        val x = mapped.x
+        val y = mapped.y
+
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                currentPath = Path().apply {
+                    moveTo(x, y)
+                }
+                mX = x
+                mY = y
+                redoStack.clear()
+            }
+            MotionEvent.ACTION_MOVE -> {
+                val dx = Math.abs(x - mX)
+                val dy = Math.abs(y - mY)
+                if (dx >= touchTolerance || dy >= touchTolerance) {
+                    currentPath?.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2)
+                    mX = x
+                    mY = y
+                    currentPath?.let { drawingCanvas?.drawPath(it, erasePaint) }
+                }
+            }
+            MotionEvent.ACTION_UP -> {
+                currentPath?.let {
+                    undoStack.addLast(Path(it))
+                    notifyHistoryChanged()
+                }
+                currentPath = null
+            }
+        }
+
+        invalidate()
+        return true
     }
 
     private fun getTouchPointOnBitmap(x: Float, y: Float): PointF? {

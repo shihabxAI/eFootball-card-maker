@@ -1,26 +1,17 @@
-package com.example.efootballcardmaker3 // তোমার প্যাকেজ নাম
+package com.example.efootballcardmaker3
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.efootballcardmaker3.databinding.ListItemSettingBinding
 
-// ডেটা ক্লাস আইটেমগুলোকে ধরে রাখার জন্য
-data class SettingItem(
-    val id: String,
-    val iconRes: Int,
-    val title: String,
-    val summary: String,
-    val hasSwitch: Boolean = false,
-    val isVersion: Boolean = false
-)
-
 class SettingsAdapter(
-    private val items: List<SettingItem>,
     private val onItemClick: (SettingItem) -> Unit,
     private val onSwitchChange: (SettingItem, Boolean) -> Unit
-) : RecyclerView.Adapter<SettingsAdapter.SettingViewHolder>() {
+) : ListAdapter<SettingItem, SettingsAdapter.SettingViewHolder>(SettingDiffCallback()) {
 
     inner class SettingViewHolder(val binding: ListItemSettingBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -30,36 +21,43 @@ class SettingsAdapter(
     }
 
     override fun onBindViewHolder(holder: SettingViewHolder, position: Int) {
-        val item = items[position]
+        val item = getItem(position)
         holder.binding.apply {
             icon.setImageResource(item.iconRes)
             title.text = item.title
             summary.text = item.summary
 
+            // বিভিন্ন ভিউয়ের visibility ঠিক করা
+            settingSwitch.visibility = if (item.hasSwitch) View.VISIBLE else View.GONE
+            versionText.visibility = if (item.isVersion) View.VISIBLE else View.GONE
+
             if (item.hasSwitch) {
-                settingSwitch.visibility = View.VISIBLE
-                versionText.visibility = View.GONE
-                settingSwitch.setOnCheckedChangeListener(null) 
+                settingSwitch.setOnCheckedChangeListener(null)
+                settingSwitch.isChecked = item.isSwitchChecked
                 settingSwitch.setOnCheckedChangeListener { _, isChecked ->
                     onSwitchChange(item, isChecked)
                 }
-            } 
-            else if (item.isVersion) {
-                versionText.visibility = View.VISIBLE
-                settingSwitch.visibility = View.GONE
-            } 
-            else {
-                settingSwitch.visibility = View.GONE
-                versionText.visibility = View.GONE
             }
-
-            if (!item.hasSwitch) {
-                 root.setOnClickListener {
+            
+            // UX Improvement: পুরো সারি জুড়ে ক্লিক করার সুবিধা
+            root.setOnClickListener {
+                if (item.hasSwitch) {
+                    settingSwitch.isChecked = !settingSwitch.isChecked
+                } else {
                     onItemClick(item)
                 }
             }
         }
     }
 
-    override fun getItemCount() = items.size
+    // DiffUtil.ItemCallback যোগ করা হয়েছে
+    class SettingDiffCallback : DiffUtil.ItemCallback<SettingItem>() {
+        override fun areItemsTheSame(oldItem: SettingItem, newItem: SettingItem): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: SettingItem, newItem: SettingItem): Boolean {
+            return oldItem == newItem
+        }
+    }
 }

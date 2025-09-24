@@ -1,48 +1,71 @@
-package com.example.efootballcardmaker3;
+// ফাইল: CountrySearchDialogFragment.kt
+package com.example.efootballcardmaker3
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.efootballcardmaker3.databinding.DialogCountrySearchBinding
 
 class CountrySearchDialogFragment(private val countries: List<Country>) : DialogFragment() {
 
-    interface OnCountrySelectedListener {
-        fun onCountrySelected(country: Country)
-    }
-
-    var listener: OnCountrySelectedListener? = null
-
-    private lateinit var adapter: CountryAdapter
+    private var _binding: DialogCountrySearchBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var countryAdapter: CountryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.dialog_country_search, container, false)
+    ): View {
+        _binding = DialogCountrySearchBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        val recyclerView: RecyclerView = view.findViewById(R.id.country_recycler_view)
-        val searchEditText: EditText = view.findViewById(R.id.search_edit_text)
+        setupRecyclerView()
+        
+        binding.searchEditText.addTextChangedListener { text ->
+            val query = text.toString().lowercase().trim()
+            val filteredList = if (query.isEmpty()) {
+                countries
+            } else {
+                countries.filter { it.name.lowercase().contains(query) }
+            }
+            // submitList ব্যবহার করে Adapter-কে নতুন লিস্ট দেওয়া হচ্ছে
+            countryAdapter.submitList(filteredList)
+        }
+    }
 
-        adapter = CountryAdapter(countries) { selectedCountry ->
-            listener?.onCountrySelected(selectedCountry)
-            dismiss() // দেশ সিলেক্ট হলে ডায়ালগ বন্ধ হয়ে যাবে
+    private fun setupRecyclerView() {
+        countryAdapter = CountryAdapter { selectedCountry ->
+            // Fragment Result API ব্যবহার করে ডেটা পাঠানো হচ্ছে
+            setFragmentResult(REQUEST_KEY, bundleOf(KEY_COUNTRY to selectedCountry))
+            dismiss()
         }
 
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = adapter
-
-        searchEditText.addTextChangedListener {
-            adapter.filter(it.toString())
+        binding.countryRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = countryAdapter
         }
+        
+        countryAdapter.submitList(countries)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+    
+    companion object {
+        const val TAG = "CountrySearchDialog"
+        const val REQUEST_KEY = "country_selection_request"
+        const val KEY_COUNTRY = "selected_country"
     }
 }
